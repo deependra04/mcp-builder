@@ -238,22 +238,6 @@ Can be completely removed without affecting your project.
 
 ---
 
-## Roadmap
-
-**v1.0.0** ✅
-- Core features, dashboard, Boost integration, TypeScript
-
-**v1.1.0** (Q2 2024)
-- Advanced validation, testing framework, real-time monitoring
-
-**v1.2.0** (Q3 2024)
-- Template system, hooks, performance optimizations
-
-**v2.0.0** (Q4 2024)
-- Multi-tenant, marketplace, AI-assisted generation
-
----
-
 ## Contributing
 
 Contributions welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
