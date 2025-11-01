@@ -1,0 +1,126 @@
+/**
+ * MCP Builder Error Styling
+ */
+
+/* Toast Notifications */
+.mcp-toast {
+    min-width: 300px;
+    max-width: 500px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Toast Container */
+#toastContainer {
+    max-width: 500px;
+}
+
+/* Error Display Cards */
+.error-page {
+    padding: 2rem;
+}
+
+.error-page .display-1 {
+    font-size: 8rem;
+    line-height: 1;
+}
+
+.error-page .suggestions {
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.error-page .suggestions ul {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.error-page .suggestions li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.error-page .suggestions li:last-child {
+    border-bottom: none;
+}
+
+/* Validation Errors */
+.alert.alert-warning ul {
+    margin-top: 0.5rem;
+}
+
+.alert.alert-warning li {
+    margin: 0.25rem 0;
+}
+
+/* Error Details Collapse */
+.collapse pre {
+    font-size: 0.875rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Inline Field Errors */
+.is-invalid {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 3.6.4.4.4-.4m0 4.8-.4-.4-.4.4'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #dc3545;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .mcp-toast {
+        min-width: auto;
+        max-width: calc(100vw - 2rem);
+    }
+
+    .error-page .display-1 {
+        font-size: 4rem;
+    }
+
+    #toastContainer {
+        left: 1rem;
+        right: 1rem;
+        max-width: none;
+    }
+}
+
+/* Accessibility */
+.mcp-toast[role="alert"] {
+    position: relative;
+}
+
+.mcp-toast:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* Animation Improvements */
+.alert-dismissible .btn-close {
+    padding: 0.5rem 0.5rem;
+}
+

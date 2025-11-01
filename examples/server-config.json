@@ -1,0 +1,64 @@
+{
+  "name": "example-mcp-server",
+  "version": "1.0.0",
+  "description": "Example MCP server configuration",
+  "tools": [
+    {
+      "name": "greet_user",
+      "description": "Greet a user with a personalized message",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the user to greet"
+          }
+        },
+        "required": ["name"]
+      }
+    },
+    {
+      "name": "calculate",
+      "description": "Perform a mathematical calculation",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "description": "The operation to perform (add, subtract, multiply, divide)",
+            "enum": ["add", "subtract", "multiply", "divide"]
+          },
+          "a": {
+            "type": "number",
+            "description": "First number"
+          },
+          "b": {
+            "type": "number",
+            "description": "Second number"
+          }
+        },
+        "required": ["operation", "a", "b"]
+      }
+    }
+  ],
+  "resources": [
+    {
+      "name": "documents",
+      "description": "Access to document resources",
+      "uri": "docs://example"
+    }
+  ],
+  "prompts": [
+    {
+      "name": "greeting_prompt",
+      "description": "A template for greeting users",
+      "arguments": [
+        {
+          "name": "user_name",
+          "description": "The name of the user"
+        }
+      ]
+    }
+  ]
+}
+

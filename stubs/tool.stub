@@ -1,0 +1,32 @@
+<?php
+
+namespace {{namespace}};
+
+use Laravel\Mcp\Tools\Tool;
+use Laravel\Mcp\Types\TextContent;
+
+class {{class}} extends Tool
+{
+    /**
+     * The name of the tool.
+     */
+    public string $name = '{{name}}';
+
+    /**
+     * The description of the tool.
+     */
+    public string $description = '{{description}}';
+
+    /**
+     * Execute the tool.
+     */
+    public function execute(array $arguments): TextContent
+    {
+        // TODO: Implement tool logic
+        
+        return new TextContent(
+            text: 'Tool executed successfully'
+        );
+    }
+}
+

@@ -1,0 +1,48 @@
+{
+    "name": "deependra04/mcp-builder",
+    "description": "Laravel MCP Builder - Automated MCP server and tool generation package with web dashboard",
+    "keywords": ["laravel", "mcp", "model-context-protocol", "builder", "automation"],
+    "license": "MIT",
+    "type": "library",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/deependra04/mcp-builder.git"
+    },
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^10.0|^11.0",
+        "laravel/mcp": "^1.0",
+        "symfony/yaml": "^6.0|^7.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0",
+        "phpunit/phpunit": "^10.0|^11.0",
+        "laravel/boost": "^1.0"
+    },
+    "suggest": {
+        "laravel/boost": "Install Laravel Boost for enhanced MCP tools and AI-assisted development features"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laravel\\McpBuilder\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Laravel\\McpBuilder\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laravel\\McpBuilder\\McpBuilderServiceProvider"
+            ],
+            "aliases": {
+                "McpBuilder": "Laravel\\McpBuilder\\Facades\\McpBuilder"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
+
