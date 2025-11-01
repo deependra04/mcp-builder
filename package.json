@@ -1,0 +1,17 @@
+{
+  "name": "mcp-builder",
+  "version": "1.0.0",
+  "description": "Laravel MCP Builder - TypeScript assets",
+  "private": true,
+  "scripts": {
+    "build": "tsc && npm run minify",
+    "watch": "tsc --watch",
+    "minify": "uglifyjs public/js/mcp-builder.js public/js/mcp-builder-toasts.js -o public/js/mcp-builder.min.js -c -m",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "typescript": "^5.9.3",
+    "uglify-js": "^3.17.4"
+  }
+}

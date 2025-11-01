@@ -1,34 +1,50 @@
-/* MCP Builder Custom Styles */
+/* MCP Builder Custom Styles - All classes prefixed to prevent conflicts */
 
+/* Dashboard Container */
 .mcp-builder-dashboard {
     padding: 20px;
 }
 
-.card {
+/* Scoped Card Styles - Only affects MCP Builder cards */
+.mcp-builder-dashboard .card,
+.mcp-builder .card {
     margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.badge {
+/* Scoped Badge Styles */
+.mcp-builder-dashboard .badge,
+.mcp-builder .badge {
     font-size: 0.875rem;
 }
 
-.table {
+/* Scoped Table Styles */
+.mcp-builder-dashboard .table,
+.mcp-builder .table {
     margin-bottom: 0;
 }
 
-.list-group-item {
+/* Scoped List Group Styles */
+.mcp-builder-dashboard .list-group-item,
+.mcp-builder .list-group-item {
     border-left: none;
     border-right: none;
 }
 
-.list-group-item:first-child {
+.mcp-builder-dashboard .list-group-item:first-child,
+.mcp-builder .list-group-item:first-child {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
-.list-group-item:last-child {
+.mcp-builder-dashboard .list-group-item:last-child,
+.mcp-builder .list-group-item:last-child {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+/* Alert styles - scoped to prevent conflicts */
+.mcp-builder-alert {
+    /* Only affects alerts with this class */
 }
 

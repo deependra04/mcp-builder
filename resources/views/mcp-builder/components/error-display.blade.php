@@ -18,7 +18,7 @@
             @endif
         </div>
         @if($showDetails && isset($error['details']))
-            <button class="btn btn-sm btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#errorDetails">
+            <button class="btn btn-sm btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#mcp-builder-error-details">
                 Details
             </button>
         @endif
@@ -38,7 +38,7 @@
         @endif
 
         @if($showDetails && isset($error['details']))
-            <div class="collapse mt-3" id="errorDetails">
+            <div class="collapse mt-3 mcp-builder-error-details" id="mcp-builder-error-details">
                 <div class="card card-body bg-light">
                     <pre class="mb-0">{{ json_encode($error['details'], JSON_PRETTY_PRINT) }}</pre>
                 </div>

@@ -3,7 +3,7 @@
 @section('title', 'MCP Builder Dashboard')
 
 @section('content')
-<div class="container-fluid">
+<div class="mcp-builder mcp-builder-dashboard container-fluid">
     <div class="row mb-4">
         <div class="col-12">
             <h1>MCP Builder Dashboard</h1>

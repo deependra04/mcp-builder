@@ -1,24 +1,47 @@
 # Laravel MCP Builder
 
-A comprehensive Laravel package that automates the creation and management of Model Context Protocol (MCP) servers and tools. This package extends Laravel MCP with powerful auto-generation features, a web dashboard, and interactive setup wizards.
+<div align="center">
 
-**🎯 Transform weeks of MCP development into minutes! Generate MCP servers and tools automatically from your Laravel models, routes, and configurations.**
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![PHP Version](https://img.shields.io/badge/php-%3E%3D8.2-blue.svg)
+![Laravel Version](https://img.shields.io/badge/laravel-%5E10.0%7C%5E11.0-red.svg)
+
+**Transform weeks of MCP development into minutes**
+
+Automated MCP server and tool generation with web dashboard
+
+[Installation](#installation) • [Quick Start](#quick-start) • [Documentation](DOCUMENTATION.md) • [Support](#support)
+
+</div>
+
+---
 
 ## Features
 
-- 🚀 **Auto-Generate from Configuration**: Create MCP servers from YAML/JSON configuration files
-- 🎯 **Model Integration**: Automatically generate CRUD tools from Eloquent models
-- 🛣️ **Route Integration**: Generate MCP tools from existing Laravel routes
-- 🎨 **Web Dashboard**: Beautiful web interface for managing servers and tools
-- ⚡ **Interactive Setup**: CLI wizard for guided MCP server creation
-- 🔧 **Code Generation**: Scaffold custom MCP tools with artisan commands
-- 📦 **Extends Laravel MCP**: Built on top of the official Laravel MCP package
+**Core**
+- Auto-generate servers from YAML/JSON configs
+- Generate CRUD tools from Eloquent models
+- Generate tools from Laravel routes
+- Batch operations for multiple models
+- Custom tool scaffolding
+
+**Web Dashboard**
+- Manage servers and tools via UI
+- Real-time statistics
+- Search and filtering
+- Professional error handling
+
+**Developer Experience**
+- Interactive CLI wizard
+- TypeScript frontend
+- Zero conflicts with existing projects
+- Auto-integration with Laravel Boost
+
+---
 
 ## Installation
 
-### Quick Install (One Command!)
-
-1. **Add the GitHub repository to your `composer.json`:**
+### 1. Add Repository
 
 ```json
 {
@@ -31,17 +54,13 @@ A comprehensive Laravel package that automates the creation and management of Mo
 }
 ```
 
-2. **Install the package:**
+### 2. Install Package
 
 ```bash
 composer require deependra04/mcp-builder:dev-main
 ```
 
-That's it! 🎉 The package will automatically install Laravel MCP (its dependency) and be ready to use.
-
-### Post-Installation Setup
-
-After installation, publish the configuration and run migrations:
+### 3. Publish & Migrate
 
 ```bash
 php artisan vendor:publish --tag=mcp-builder-config
@@ -49,305 +68,236 @@ php artisan vendor:publish --tag=mcp-builder-migrations
 php artisan migrate
 ```
 
-You're all set! Access the dashboard at `/mcp-builder` or start creating servers with `php artisan mcp:setup`.
+Access dashboard at `/mcp-builder` or run `php artisan mcp:setup`
 
-> **Note:** See [INSTALLATION.md](INSTALLATION.md) for more details and troubleshooting.
+---
 
-## Configuration
+## Quick Start
 
-Publish the configuration file:
-
-```bash
-php artisan vendor:publish --tag=mcp-builder-config
-```
-
-This will create `config/mcp-builder.php` with customizable settings.
-
-## Setup
-
-### 1. Publish Migrations
-
-```bash
-php artisan vendor:publish --tag=mcp-builder-migrations
-php artisan migrate
-```
-
-### 2. Publish Views (Optional)
-
-If you want to customize the dashboard views:
-
-```bash
-php artisan vendor:publish --tag=mcp-builder-views
-```
-
-### 3. Publish Assets (Optional)
-
-If you want to customize the dashboard CSS/JS:
-
-```bash
-php artisan vendor:publish --tag=mcp-builder-assets
-```
-
-## Usage
-
-### Interactive Setup Wizard
-
-The easiest way to create an MCP server is using the interactive setup wizard:
+### Interactive Setup
 
 ```bash
 php artisan mcp:setup
 ```
 
-This will guide you through:
-- Server basic information (name, version, description)
-- Generation method selection
-- Configuration based on your choice
-
-### Quick Setup
-
-For a faster setup with defaults:
-
-```bash
-php artisan mcp:setup --quick
-```
-
-### Generate from Configuration File
-
-Create an MCP server from a YAML or JSON configuration file:
-
-```bash
-php artisan mcp:generate-config config/mcp-server.yaml
-php artisan mcp:generate-config config/mcp-server.json --name=my-server
-```
-
-Example YAML configuration:
-
-```yaml
-name: my-mcp-server
-version: 1.0.0
-description: My MCP server description
-tools:
-  - name: example_tool
-    description: An example tool
-    inputSchema:
-      type: object
-      properties:
-        message:
-          type: string
-          description: The message to process
-```
-
 ### Generate from Model
 
-Generate CRUD tools from an Eloquent model:
-
 ```bash
-php artisan mcp:generate-model App\\Models\\User
-php artisan mcp:generate-model App\\Models\\Post --save --server=my-server
+php artisan mcp:generate-model App\Models\User --save --server=my-api
 ```
-
-This will generate:
-- `{model}_list` - List all records
-- `{model}_show` - Show a specific record
-- `{model}_create` - Create a new record
-- `{model}_update` - Update a record
-- `{model}_delete` - Delete a record
 
 ### Generate from Routes
 
-Generate MCP tools from your Laravel routes:
-
 ```bash
-php artisan mcp:generate-routes
-php artisan mcp:generate-routes --save --server=my-server
-php artisan mcp:generate-routes --filter=api --save
+php artisan mcp:generate-routes --save --server=my-api
 ```
 
-### Create Custom Tools
-
-Generate a custom MCP tool:
+### Generate from Config
 
 ```bash
-php artisan mcp:make-tool ProcessPayment
-php artisan mcp:make-tool SendEmail --description="Send an email" --namespace="App\\Mcp\\Tools"
+php artisan mcp:generate-config config/mcp-server.yaml
 ```
 
-## Web Dashboard
+### Batch Generation
 
-Access the web dashboard at `/mcp-builder` (or your configured prefix).
+```bash
+php artisan mcp:generate-batch "App\Models\User,App\Models\Post" --save --server=my-api
+```
 
-The dashboard provides:
-- **Overview**: Statistics and recent servers/tools
-- **Server Management**: Create, edit, view, and delete MCP servers
-- **Tool Management**: Browse and manage generated tools
+---
 
-### Dashboard Routes
+## Configuration
 
-- `GET /mcp-builder` - Dashboard home
-- `GET /mcp-builder/servers` - List all servers
-- `GET /mcp-builder/servers/create` - Create new server
-- `GET /mcp-builder/servers/{id}` - View server details
-- `GET /mcp-builder/tools` - List all tools
+Publish config: `php artisan vendor:publish --tag=mcp-builder-config`
 
-## Configuration Options
-
-Edit `config/mcp-builder.php` to customize:
+**Key Settings:**
 
 ```php
 return [
-    'storage_path' => storage_path('mcp'),
-    'config_path' => base_path('mcp-configs'),
-    'tools_path' => app_path('Mcp/Tools'),
-    
     'dashboard' => [
-        'enabled' => true,
-        'prefix' => 'mcp-builder',
-        'middleware' => ['web'],
+        'prefix' => 'mcp-builder', // Dashboard URL prefix
+        'auth' => [
+            'enabled' => false,
+        ],
     ],
-    
-    'auto_generate' => [
-        'models' => false,
-        'routes' => false,
-    ],
-    
     'tool_defaults' => [
         'namespace' => 'App\\Mcp\\Tools',
-        'suffix' => 'Tool',
     ],
 ];
 ```
 
-## Programmatic Usage
+---
 
-### Using the Facade
+## Web Dashboard
+
+Access at `/mcp-builder` (or configured prefix).
+
+**Features:**
+- Server and tool management
+- Statistics and analytics
+- Search and filtering
+
+---
+
+## Laravel Boost Integration
+
+Auto-install and integrate 15+ Boost tools:
+
+```bash
+php artisan mcp:integrate-boost my-server
+```
+
+**Includes:**
+- Database query tools
+- Schema inspection
+- Tinker execution
+- Documentation access
+- Code analysis
+
+---
+
+## API Usage
+
+### Facade
 
 ```php
 use Laravel\McpBuilder\Facades\McpBuilder;
 
-// Get server manager
 $serverManager = McpBuilder::serverManager();
 $servers = $serverManager->getAll();
-
-// Get config manager
-$configManager = McpBuilder::configManager();
-$config = $configManager->loadConfig('my-server');
-
-// Get code generator
-$codeGenerator = McpBuilder::codeGenerator();
-$tools = $codeGenerator->generateFromModel('App\\Models\\User');
 ```
 
-### Using Dependency Injection
+### Dependency Injection
 
 ```php
 use Laravel\McpBuilder\Services\ServerManager;
-use Laravel\McpBuilder\Generators\ModelGenerator;
 
 class MyController extends Controller
 {
-    public function __construct(
-        private ServerManager $serverManager,
-        private ModelGenerator $modelGenerator
-    ) {}
+    public function __construct(private ServerManager $serverManager) {}
 }
 ```
 
-## Extending Laravel MCP
+---
 
-This package extends Laravel MCP and works seamlessly with it. All generated tools follow Laravel MCP conventions and can be used alongside manually created tools.
+## TypeScript
+
+Frontend uses TypeScript for type safety.
+
+**Build:**
+```bash
+npm install
+npm run build
+```
+
+---
+
+## Safety & Isolation
+
+**100% isolated** - Zero conflicts with your project:
+
+- Routes prefixed with `mcp-builder`
+- Views namespaced `mcp-builder::`
+- Database tables prefixed `mcp_`
+- All assets in `vendor/mcp-builder`
+
+Can be completely removed without affecting your project.
+
+---
 
 ## Requirements
 
 - PHP 8.2+
 - Laravel 10.0+ or 11.0+
-- Laravel MCP package (installed automatically)
-- Symfony YAML component (installed automatically)
+- Laravel MCP (auto-installed)
 
-### Optional Dependencies
+**Optional:**
+- Laravel Boost (for enhanced tools)
+- Node.js 18+ (for TypeScript)
 
-- **Laravel Boost** - For enhanced MCP tools and AI-assisted development:
-  ```bash
-  composer require laravel/boost --dev
-  ```
-  Then integrate Boost tools: `php artisan mcp:integrate-boost my-server`
+---
 
-## Testing
+## Documentation
 
-```bash
-composer test
-```
+📖 **[Complete Documentation](DOCUMENTATION.md)** - Full guide with examples, API reference, and troubleshooting.
 
-## Contributing
+---
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## Commands
 
-## License
+- `mcp:setup` - Interactive server setup
+- `mcp:generate-model` - Generate tools from model
+- `mcp:generate-routes` - Generate tools from routes
+- `mcp:generate-config` - Generate from config file
+- `mcp:generate-batch` - Batch generate from multiple models
+- `mcp:make-tool` - Create custom tool
+- `mcp:integrate-boost` - Integrate Laravel Boost
+- `mcp:export-server` - Export server config
+- `mcp:import-server` - Import server config
+- `mcp:validate-config` - Validate configuration
 
-The Laravel MCP Builder package is open-sourced software licensed under the [MIT license](LICENSE.md).
-
-## Support
-
-For issues, questions, or contributions, please visit the [GitHub repository](https://github.com/deependra04/mcp-builder).
-
-## Laravel Boost Integration ✨
-
-This package integrates seamlessly with [Laravel Boost](https://github.com/laravel/boost), providing you with **15+ additional MCP tools** out of the box.
-
-### 🎁 What You Get with Boost
-
-**Laravel Boost automatically installs when needed and provides:**
-
-- 🗄️ **Database Tools**: Query database, inspect schema, analyze tables
-- 💻 **Tinker Execution**: Run PHP code directly in Laravel environment
-- 📚 **Documentation**: Access 17,000+ Laravel documentation pieces
-- 🔍 **Code Analysis**: Inspect routes, models, configs, and services
-- 🎯 **Laravel Guidelines**: AI follows Laravel best practices automatically
-- 🚀 **Enhanced AI**: Context-aware assistance that understands your app
-
-> **📖 See [BOOST_BENEFITS.md](BOOST_BENEFITS.md) for detailed benefits and examples**
-
-### Quick Integration (Auto-Install)
-
-```bash
-# Just integrate - Boost will auto-install if not present!
-php artisan mcp:integrate-boost my-server
-
-# Or include during setup
-php artisan mcp:setup
-# (Wizard will ask to install Boost automatically)
-```
-
-**The package automatically:**
-- ✅ Checks if Boost is installed
-- ✅ Offers to install if missing
-- ✅ Integrates all Boost tools
-- ✅ Merges with your existing tools
-
-## Why Use This Package?
-
-**Before MCP Builder:**
-- ❌ Write 500+ lines of code per model for MCP tools
-- ❌ Manually create MCP servers (weeks of work)
-- ❌ No visual management interface
-- ❌ Hard to maintain and update
-
-**With MCP Builder:**
-- ✅ Generate 5 CRUD tools in 30 seconds
-- ✅ Create complete MCP servers in minutes
-- ✅ Beautiful web dashboard for management
-- ✅ Easy updates and maintenance
-
-**Result:** 90% less code, 99% faster development! 🚀
-
-> **📖 See [BENEFITS.md](BENEFITS.md) for detailed benefits for your project and developers**
+---
 
 ## Roadmap
 
-- [x] Laravel Boost integration
-- [ ] Advanced tool validation
-- [ ] Tool testing framework
-- [ ] Export/import configurations
-- [ ] Real-time server status monitoring
-- [ ] Tool versioning
-- [ ] Advanced filtering and search in dashboard
+**v1.0.0** ✅
+- Core features, dashboard, Boost integration, TypeScript
 
+**v1.1.0** (Q2 2024)
+- Advanced validation, testing framework, real-time monitoring
+
+**v1.2.0** (Q3 2024)
+- Template system, hooks, performance optimizations
+
+**v2.0.0** (Q4 2024)
+- Multi-tenant, marketplace, AI-assisted generation
+
+---
+
+## Contributing
+
+Contributions welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+**Quick Start:**
+```bash
+git clone https://github.com/deependra04/mcp-builder.git
+cd mcp-builder
+composer install
+npm install
+```
+
+---
+
+## FAQ
+
+**Will this affect my project?** No - completely isolated.
+
+**Can I uninstall safely?** Yes - `composer remove deependra04/mcp-builder`
+
+**Does it require Boost?** No - Boost is optional but recommended.
+
+**Production ready?** Yes - stable and tested.
+
+---
+
+## Support
+
+- [GitHub Issues](https://github.com/deependra04/mcp-builder/issues)
+- [GitHub Discussions](https://github.com/deependra04/mcp-builder/discussions)
+- [Documentation](DOCUMENTATION.md)
+
+---
+
+## License
+
+MIT License - See [LICENSE.md](LICENSE.md)
+
+---
+
+<div align="center">
+
+**Made with ❤️ for the Laravel community**
+
+[⭐ Star on GitHub](https://github.com/deependra04/mcp-builder) • [📖 Documentation](DOCUMENTATION.md) • [🐛 Report Bug](https://github.com/deependra04/mcp-builder/issues)
+
+</div>

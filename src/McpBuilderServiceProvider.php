@@ -95,7 +95,7 @@ class McpBuilderServiceProvider extends ServiceProvider
 
         // Publish views
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/mcp-builder'),
+            __DIR__.'/../resources/views/mcp-builder' => resource_path('views/vendor/mcp-builder'),
         ], 'mcp-builder-views');
 
         // Publish assets
@@ -111,7 +111,7 @@ class McpBuilderServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         // Load views
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'mcp-builder');
+        $this->loadViewsFrom(__DIR__.'/../resources/views/mcp-builder', 'mcp-builder');
 
         // Register commands
         if ($this->app->runningInConsole()) {

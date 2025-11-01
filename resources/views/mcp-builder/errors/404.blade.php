@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row justify-content-center align-items-center" style="min-height: 60vh;">
         <div class="col-md-6 text-center">
-            <div class="error-page">
+            <div class="mcp-builder-error-page">
                 <h1 class="display-1 fw-bold text-primary">404</h1>
                 <h2 class="mb-4">Page Not Found</h2>
                 <p class="lead text-muted mb-4">

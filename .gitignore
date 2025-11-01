@@ -12,6 +12,12 @@ composer.lock
 *.swp
 *.swo
 *~
-.DS_Store
 Thumbs.db
 
+# TypeScript build output (will be generated)
+/public/js/*.js.map
+/public/js/*.d.ts
+
+# Keep compiled JS files
+!/public/js/mcp-builder.js
+!/public/js/mcp-builder-toasts.js

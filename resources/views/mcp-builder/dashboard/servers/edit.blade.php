@@ -1,22 +1,23 @@
 @extends('mcp-builder::layouts.app')
 
-@section('title', 'Create MCP Server')
+@section('title', 'Edit Server: ' . $server->name)
 
 @section('content')
 <div class="row">
     <div class="col-md-8 offset-md-2">
         <div class="card">
             <div class="card-header">
-                <h5>Create New MCP Server</h5>
+                <h5>Edit MCP Server</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('mcp-builder.servers.store') }}" method="POST">
+                <form action="{{ route('mcp-builder.servers.update', $server->id) }}" method="POST" class="mcp-builder-form">
                     @csrf
+                    @method('PUT')
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Server Name *</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                               id="name" name="name" value="{{ old('name') }}" required>
+                               id="name" name="name" value="{{ old('name', $server->name) }}" required>
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -25,7 +26,7 @@
                     <div class="mb-3">
                         <label for="version" class="form-label">Version *</label>
                         <input type="text" class="form-control @error('version') is-invalid @enderror" 
-                               id="version" name="version" value="{{ old('version', '1.0.0') }}" required>
+                               id="version" name="version" value="{{ old('version', $server->version) }}" required>
                         @error('version')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -34,15 +35,15 @@
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control @error('description') is-invalid @enderror" 
-                                  id="description" name="description" rows="3">{{ old('description') }}</textarea>
+                                  id="description" name="description" rows="3">{{ old('description', $server->description) }}</textarea>
                         @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('mcp-builder.servers.index') }}" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Create Server</button>
+                        <a href="{{ route('mcp-builder.servers.show', $server->id) }}" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Update Server</button>
                     </div>
                 </form>
             </div>

@@ -1,0 +1,1 @@
+{"version":3,"file":"mcp-builder.d.ts","sourceRoot":"","sources":["../../resources/ts/mcp-builder.ts"],"names":[],"mappings":"AAAA;;;;;GAKG;AAEH,kBAAU,UAAU,CAAC;IAGnB,MAAa,IAAI;QACf,OAAO,CAAC,MAAM,CAAC,QAAQ,CAAC,OAAO,CAAmB;QAClD,OAAO,CAAC,WAAW,CAAkB;;QAoBrC;;WAEG;QACH,OAAO,CAAC,UAAU;QAwBlB;;WAEG;eACW,UAAU,IAAI,MAAM;KAGnC;CAMF"}
